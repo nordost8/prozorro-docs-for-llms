@@ -20,7 +20,6 @@
 
 - **LLM / AI developers** building apps on top of Prozorro data — load `llms-full.txt` into context and your model instantly knows the full API
 - **Anti-corruption researchers** and civic tech projects that need structured Prozorro API knowledge
-- **RAG pipelines** — `llms.txt` as an index, individual pages fetched on demand
 - Anyone integrating with Ukrainian public procurement who doesn't want to read 300 HTML pages
 
 ## How to use
