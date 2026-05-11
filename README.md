@@ -1,114 +1,119 @@
-# Prozorro API Docs Scraper
+# Prozorro API Docs → llms.txt
 
-Collects the full [Prozorro Open Procurement API](https://prozorro-api-docs.readthedocs.io/en/latest/)
-documentation and converts it into clean, LLM-ready Markdown files.
+Converts the full [Prozorro Open Procurement API documentation](https://prozorro-api-docs.readthedocs.io/en/latest/)
+(301 pages, ~19 MB) into clean, LLM-ready files following the
+[llms.txt standard](https://llmstxt.org/) by [Jeremy Howard](https://github.com/jph00).
 
-Designed for RAG pipelines and LLM fine-tuning on Ukrainian public procurement data.
+Built for the [AI-Driven Corruption Radar](https://github.com/Nordost/AI-Driven-Corruption-Radar-Powered-by-Prozorro-Open-Data)
+project to give LLMs instant, structured access to Prozorro API knowledge.
 
-## What it does
+## Output
 
-**Step 1** — Crawls all 300+ documentation pages via BFS, fetches each through
-[r.jina.ai](https://r.jina.ai) for clean Markdown conversion, and saves them
-into a `docs/` directory tree that mirrors the URL structure.
-Graphviz state-machine diagrams get their real image URLs restored from the original HTML.
+| File | Size | Contents |
+|---|---|---|
+| `llms.txt` | ~36 KB | Index: titles + source URLs + one-line descriptions |
+| `llms-full.txt` | ~17 MB | All 197 documentation pages concatenated |
 
-**Step 2** — Runs a Cursor (or Claude) CLI agent on each file to strip
-sidebar navigation, ads, and Sphinx boilerplate, writing clean files to `docs_clean/`.
-Fully resumable: already-processed files are skipped on re-run.
+Load `llms-full.txt` into your LLM context window, or use `llms.txt` as a
+lightweight index and fetch individual pages on demand.
 
-**Step 3** — Verifies consistency between `docs/` and `docs_clean/` and
-reports any files that still need cleaning.
-
-## Output structure
+## Pipeline
 
 ```
-docs/
-├── overview.md
-├── basic-actions/
-│   ├── authentication.md
-│   ├── errors.md
-│   └── feed.md
-├── standard/
-│   ├── bid.md
-│   ├── contract.md
-│   └── ...
-├── tendering/
-│   ├── open/tutorial.md          ← full HTTP request/response examples
-│   ├── belowthreshold/tutorial.md
-│   └── ...
-└── ...
-
-docs_clean/                       ← same structure, cleaned content
+Step 1 — Scrape       docs/           301 raw Markdown pages via r.jina.ai
+Step 2 — Clean        docs_clean/     regex strips nav, ads, Sphinx boilerplate
+Step 3 — Classify     docs_clean/     OpenAI GPT-4o-mini marks nav-only pages as STUB
+Step 4 — Build        llms.txt        index + llms-full.txt full concatenation
+                      llms-full.txt
 ```
 
-## Requirements
-
-```bash
-pip install requests beautifulsoup4
-```
-
-A Cursor or Claude CLI must be available for Step 2.
+`docs/` is the immutable source of truth and is never modified after Step 1.
 
 ## Usage
 
-### Step 1 — Scrape
+### Step 1 — Scrape all pages
 
 ```bash
-python step1_scrape.py
+pip install -r requirements.txt
+python3 step1_scrape.py
 ```
 
-Resumable: if interrupted, re-run — non-empty files are skipped automatically.
+Resumable: non-empty files in `docs/` are skipped on re-run.
+Uses [r.jina.ai](https://r.jina.ai) to convert HTML → clean Markdown.
 
-### Step 2 — Clean
-
-Configure your CLI agent in `step2_cleanup.py` (line ~40):
-
-```python
-AGENT_CMD = ["cursor", "agent"]   # Cursor CLI
-# or
-AGENT_CMD = ["claude", "-p"]      # Claude Code CLI
-```
-
-Test on a few files first:
+### Step 2 — Regex cleanup
 
 ```bash
-python step2_cleanup.py --dry-run --limit 5
-python step2_cleanup.py --limit 5
+python3 step2_cleanup.py
 ```
 
-Then run the full cleanup (re-run if interrupted — it resumes automatically):
+Strips sidebar navigation, EthicalAds blocks, Sphinx footer, duplicate headings,
+and anchor self-links using deterministic regex patterns. No LLM required.
 
 ```bash
-python step2_cleanup.py
+python3 step2_cleanup.py --reprocess-all   # reset and reprocess everything
 ```
 
-### Step 3 — Verify
+Resumable: 0-byte files in `docs_clean/` are treated as pending.
+
+### Step 3 — Classify with OpenAI
 
 ```bash
-python step3_verify.py
+cp .env.example .env          # add your OPENAI_API_KEY
+python3 step3_classify.py
 ```
 
-If issues remain, re-run Step 2 (already-clean files are skipped).
-When everything looks good:
+Uses `gpt-4o-mini` to decide whether each page contains real API content
+(HTTP examples, schemas, workflows) or is navigation-only.
+Navigation-only pages are marked `<!-- STUB -->` and excluded from output.
 
 ```bash
-python step3_verify.py --delete-stubs
+python3 step3_classify.py --dry-run    # preview without writing
+python3 step3_classify.py --reset      # clear progress and restart
 ```
 
-This removes stub files (pages with no real content) from `docs_clean/`
-and leaves only the actual API documentation.
+Fully resumable via `step3_done.txt` (gitignored).
 
-## How resumability works
+### Step 4 — Generate llms.txt
 
-- **Step 1**: skips files in `docs/` that are already non-empty
-- **Step 2**: skips files in `docs_clean/` that already have content or a `<!-- STUB -->` marker
-- Both steps can be interrupted and restarted at any time with no data loss
+```bash
+python3 step4_llms.py
+```
 
-## Rate limiting
+Produces `llms.txt` (index) and `llms-full.txt` (full content).
 
-r.jina.ai may rate-limit requests. The scraper uses exponential backoff
-(up to 4 retries per page). If you hit persistent 429 errors, increase
-`REQUEST_DELAY` in `step1_scrape.py` (default: 1.5 seconds).
+## Requirements
+
+```
+requests
+beautifulsoup4
+openai
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+API key in `.env`:
+```
+OPENAI_API_KEY=sk-...
+```
+
+## Results
+
+- 301 pages scraped
+- 197 pages with real API content (kept)
+- 104 pages discarded as navigation/stub
+- `llms-full.txt` — 197 clean documentation pages ready for LLM context
+
+## llms.txt standard
+
+This project follows the [llms.txt](https://llmstxt.org/) convention proposed by
+[Jeremy Howard](https://github.com/jph00) (fast.ai) for making web content
+structured and accessible to LLMs:
+
+- `llms.txt` — a lightweight index with titles and URLs
+- `llms-full.txt` — full content for loading directly into context
 
 ## License
 
