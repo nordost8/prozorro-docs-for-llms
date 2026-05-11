@@ -1,53 +1,88 @@
 # Prozorro API Docs for LLMs
 
-Complete [Prozorro Open Procurement API](https://prozorro-api-docs.readthedocs.io/en/latest/)
-documentation converted into LLM-ready files following the
-[llms.txt standard](https://llmstxt.org/) by [Jeremy Howard](https://github.com/jph00).
+**The complete Prozorro Open Procurement API documentation — cleaned, filtered, and packaged as [`llms.txt`](https://llmstxt.org/) so you can drop it straight into any LLM context.**
 
-Built for the [AI-Driven Corruption Radar](https://github.com/nordost8/AI-Driven-Corruption-Radar-Powered-by-Prozorro-Open-Data) project.
+![Pages](https://img.shields.io/badge/pages-197-blue)
+![Size](https://img.shields.io/badge/llms--full.txt-16.3%20MB-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Standard](https://img.shields.io/badge/standard-llms.txt-orange)
+
+---
 
 ## Files
 
-| File | Size | Description |
+| File | Size | What it is |
 |---|---|---|
-| [`llms.txt`](./llms.txt) | 36 KB | Index of all pages — titles, URLs, one-line descriptions |
-| [`llms-full.txt`](./llms-full.txt) | 16.3 MB | Full documentation — all 197 pages concatenated, ready to load into LLM context |
+| [`llms.txt`](./llms.txt) | 36 KB | Index — titles, source URLs, one-line descriptions of every page |
+| [`llms-full.txt`](./llms-full.txt) | 16.3 MB | Full content — all 197 documentation pages concatenated |
+
+## Who is this for
+
+- **LLM / AI developers** building apps on top of Prozorro data — load `llms-full.txt` into context and your model instantly knows the full API
+- **Anti-corruption researchers** and civic tech projects that need structured Prozorro API knowledge
+- **RAG pipelines** — `llms.txt` as an index, individual pages fetched on demand
+- Anyone integrating with Ukrainian public procurement who doesn't want to read 300 HTML pages
 
 ## How to use
 
-Load `llms-full.txt` directly into your LLM context window to give it full knowledge
-of the Prozorro API — endpoints, schemas, request/response examples, workflows.
+```python
+# Load full docs into your LLM context
+with open("llms-full.txt") as f:
+    prozorro_docs = f.read()
 
-Use `llms.txt` as a lightweight index if you want to fetch specific pages on demand.
+# Or use llms.txt as a lightweight index
+with open("llms.txt") as f:
+    index = f.read()
+```
+
+Or simply attach `llms-full.txt` to your Claude / ChatGPT / Gemini conversation.
 
 ## What's inside
 
-The Prozorro API documentation site has **301 pages** total. After filtering out
-pure navigation pages (table of contents, index pages, empty overviews) that carry
-no actual API content, **197 pages** remain — every page with real information:
-HTTP request/response examples, field schemas, workflow descriptions, and configuration tables.
+Prozorro's documentation site has **301 pages** total. After automatically filtering out pure navigation pages — table-of-contents pages, empty index overviews, pages with just links — **197 pages** of real API content remain. Nothing was lost: the 104 excluded pages contained zero API information (they were menus).
 
-Nothing was lost — the 104 excluded pages were navigation-only (e.g. `index.html`,
-`overview.html` with just links to subpages). All actual API documentation is included.
+The 197 kept pages include:
+- HTTP request/response examples for every endpoint
+- Full JSON schemas for all data types (Tender, Bid, Award, Contract, Complaint…)
+- Workflow diagrams (rendered as DOT source, readable by LLMs)
+- Configuration tables per procurement procedure type
+- Tutorials for all 15+ procedure types (belowThreshold, openEU, ESCO, cfaua…)
+
+## Why both Ukrainian and English?
+
+The documentation is intentionally bilingual — this reflects the source material, not a processing artifact.
+
+**English** — technical layer written by the OpenProcurement team:
+HTTP methods, API field names, endpoint paths, status values, schema descriptions, algorithm explanations.
+
+**Ukrainian** — legal and domain-specific content:
+Test JSON payloads use real Ukrainian data (`"Державне управління справами"`, `"м. Київ"`), legal qualification criteria quote Ukrainian procurement law verbatim, and some procedure-specific descriptions are in Ukrainian.
+
+For LLMs this is actually an advantage — the model learns both the technical API structure (English) and the real-world Ukrainian procurement context it will encounter in production data.
 
 ## How it was built
 
 ```
-Step 1 — Scrape    301 pages crawled from prozorro-api-docs.readthedocs.io via r.jina.ai
-Step 2 — Clean     regex strips sidebar nav, ads, Sphinx boilerplate (deterministic, no LLM)
-Step 3 — Filter    GPT-4o-mini classifies each page: real content vs navigation-only
-Step 4 — Build     197 pages → llms.txt index + llms-full.txt full concatenation
+Step 1 — Scrape    301 pages from prozorro-api-docs.readthedocs.io via r.jina.ai (HTML → Markdown)
+Step 2 — Clean     deterministic regex strips sidebar nav, ads, Sphinx boilerplate — no LLM needed
+Step 3 — Filter    GPT-4o-mini classifies each page: real API content vs navigation-only
+Step 4 — Build     197 pages → llms.txt index + llms-full.txt concatenation
 ```
 
-Scripts are in the [`scripts/`](./scripts/) folder if you want to regenerate or adapt for another docs site.
+Rebuild scripts are in [`scripts/`](./scripts/) if you want to regenerate or adapt for another docs site.
 
 ## llms.txt standard
 
-The [llms.txt](https://llmstxt.org/) convention by [Jeremy Howard](https://github.com/jph00) (fast.ai)
-defines a standard way to make web documentation accessible to LLMs:
+This project follows the [llms.txt](https://llmstxt.org/) convention proposed by
+[Jeremy Howard](https://github.com/jph00) (fast.ai):
 
-- `llms.txt` — structured index with titles and source URLs
-- `llms-full.txt` — full content for direct loading into context
+- `llms.txt` — a structured index with titles and source URLs
+- `llms-full.txt` — full content for loading directly into LLM context
+
+## Related
+
+- [AI-Driven Corruption Radar](https://github.com/nordost8/AI-Driven-Corruption-Radar-Powered-by-Prozorro-Open-Data) — the project this was built for
+- [Prozorro Open Procurement API docs](https://prozorro-api-docs.readthedocs.io/en/latest/) — original source
 
 ## License
 
