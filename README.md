@@ -1,119 +1,53 @@
-# Prozorro API Docs → llms.txt
+# Prozorro API Docs for LLMs
 
-Converts the full [Prozorro Open Procurement API documentation](https://prozorro-api-docs.readthedocs.io/en/latest/)
-(301 pages, ~19 MB) into clean, LLM-ready files following the
+Complete [Prozorro Open Procurement API](https://prozorro-api-docs.readthedocs.io/en/latest/)
+documentation converted into LLM-ready files following the
 [llms.txt standard](https://llmstxt.org/) by [Jeremy Howard](https://github.com/jph00).
 
-Built for the [AI-Driven Corruption Radar](https://github.com/Nordost/AI-Driven-Corruption-Radar-Powered-by-Prozorro-Open-Data)
-project to give LLMs instant, structured access to Prozorro API knowledge.
+Built for the [AI-Driven Corruption Radar](https://github.com/nordost8/AI-Driven-Corruption-Radar-Powered-by-Prozorro-Open-Data) project.
 
-## Output
+## Files
 
-| File | Size | Contents |
+| File | Size | Description |
 |---|---|---|
-| `llms.txt` | ~36 KB | Index: titles + source URLs + one-line descriptions |
-| `llms-full.txt` | ~17 MB | All 197 documentation pages concatenated |
+| [`llms.txt`](./llms.txt) | 36 KB | Index of all pages — titles, URLs, one-line descriptions |
+| [`llms-full.txt`](./llms-full.txt) | 16.3 MB | Full documentation — all 197 pages concatenated, ready to load into LLM context |
 
-Load `llms-full.txt` into your LLM context window, or use `llms.txt` as a
-lightweight index and fetch individual pages on demand.
+## How to use
 
-## Pipeline
+Load `llms-full.txt` directly into your LLM context window to give it full knowledge
+of the Prozorro API — endpoints, schemas, request/response examples, workflows.
 
-```
-Step 1 — Scrape       docs/           301 raw Markdown pages via r.jina.ai
-Step 2 — Clean        docs_clean/     regex strips nav, ads, Sphinx boilerplate
-Step 3 — Classify     docs_clean/     OpenAI GPT-4o-mini marks nav-only pages as STUB
-Step 4 — Build        llms.txt        index + llms-full.txt full concatenation
-                      llms-full.txt
-```
+Use `llms.txt` as a lightweight index if you want to fetch specific pages on demand.
 
-`docs/` is the immutable source of truth and is never modified after Step 1.
+## What's inside
 
-## Usage
+The Prozorro API documentation site has **301 pages** total. After filtering out
+pure navigation pages (table of contents, index pages, empty overviews) that carry
+no actual API content, **197 pages** remain — every page with real information:
+HTTP request/response examples, field schemas, workflow descriptions, and configuration tables.
 
-### Step 1 — Scrape all pages
+Nothing was lost — the 104 excluded pages were navigation-only (e.g. `index.html`,
+`overview.html` with just links to subpages). All actual API documentation is included.
 
-```bash
-pip install -r requirements.txt
-python3 step1_scrape.py
-```
-
-Resumable: non-empty files in `docs/` are skipped on re-run.
-Uses [r.jina.ai](https://r.jina.ai) to convert HTML → clean Markdown.
-
-### Step 2 — Regex cleanup
-
-```bash
-python3 step2_cleanup.py
-```
-
-Strips sidebar navigation, EthicalAds blocks, Sphinx footer, duplicate headings,
-and anchor self-links using deterministic regex patterns. No LLM required.
-
-```bash
-python3 step2_cleanup.py --reprocess-all   # reset and reprocess everything
-```
-
-Resumable: 0-byte files in `docs_clean/` are treated as pending.
-
-### Step 3 — Classify with OpenAI
-
-```bash
-cp .env.example .env          # add your OPENAI_API_KEY
-python3 step3_classify.py
-```
-
-Uses `gpt-4o-mini` to decide whether each page contains real API content
-(HTTP examples, schemas, workflows) or is navigation-only.
-Navigation-only pages are marked `<!-- STUB -->` and excluded from output.
-
-```bash
-python3 step3_classify.py --dry-run    # preview without writing
-python3 step3_classify.py --reset      # clear progress and restart
-```
-
-Fully resumable via `step3_done.txt` (gitignored).
-
-### Step 4 — Generate llms.txt
-
-```bash
-python3 step4_llms.py
-```
-
-Produces `llms.txt` (index) and `llms-full.txt` (full content).
-
-## Requirements
+## How it was built
 
 ```
-requests
-beautifulsoup4
-openai
+Step 1 — Scrape    301 pages crawled from prozorro-api-docs.readthedocs.io via r.jina.ai
+Step 2 — Clean     regex strips sidebar nav, ads, Sphinx boilerplate (deterministic, no LLM)
+Step 3 — Filter    GPT-4o-mini classifies each page: real content vs navigation-only
+Step 4 — Build     197 pages → llms.txt index + llms-full.txt full concatenation
 ```
 
-```bash
-pip install -r requirements.txt
-```
-
-API key in `.env`:
-```
-OPENAI_API_KEY=sk-...
-```
-
-## Results
-
-- 301 pages scraped
-- 197 pages with real API content (kept)
-- 104 pages discarded as navigation/stub
-- `llms-full.txt` — 197 clean documentation pages ready for LLM context
+Scripts are in the [`scripts/`](./scripts/) folder if you want to regenerate or adapt for another docs site.
 
 ## llms.txt standard
 
-This project follows the [llms.txt](https://llmstxt.org/) convention proposed by
-[Jeremy Howard](https://github.com/jph00) (fast.ai) for making web content
-structured and accessible to LLMs:
+The [llms.txt](https://llmstxt.org/) convention by [Jeremy Howard](https://github.com/jph00) (fast.ai)
+defines a standard way to make web documentation accessible to LLMs:
 
-- `llms.txt` — a lightweight index with titles and URLs
-- `llms-full.txt` — full content for loading directly into context
+- `llms.txt` — structured index with titles and source URLs
+- `llms-full.txt` — full content for direct loading into context
 
 ## License
 

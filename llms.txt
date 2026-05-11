@@ -1,0 +1,204 @@
+# Prozorro Open Procurement API — Documentation
+
+> Full documentation for the Prozorro Open Procurement API (openprocurement.api 2.5).
+> Source: https://prozorro-api-docs.readthedocs.io/en/latest/
+
+## Documentation Pages
+
+- [Exploring basic rules](https://prozorro-api-docs.readthedocs.io/en/latest/agreements/cfaua/tutorial.html): Let’s try exploring the /agreements endpoint:
+- [Exploring basic rules](https://prozorro-api-docs.readthedocs.io/en/latest/agreements/frameworks/tutorial.html): Let’s try exploring the /agreements endpoint:
+- [Acceleration mode for sandbox](https://prozorro-api-docs.readthedocs.io/en/latest/basic-actions/acceleration.html): Acceleration mode was developed to enable procedures’ testing in the sandbox and to reduce time frames of these procedur…
+- [API keys](https://prozorro-api-docs.readthedocs.io/en/latest/basic-actions/authentication.html): Some of the API requests (especially the ones that are read-only GET requests) do not require any authentication. The ot…
+- [Causal consistency sessions](https://prozorro-api-docs.readthedocs.io/en/latest/basic-actions/cluster.html): There is a cluster of several servers that synchronize data between each other. Client should always work with the same …
+- [BUDGET_PERIOD_FROM](https://prozorro-api-docs.readthedocs.io/en/latest/basic-actions/constants.html): GET /api/2.5/constants HTTP/1.0
+- [Status Codes](https://prozorro-api-docs.readthedocs.io/en/latest/basic-actions/errors.html): After processing API always provides response, reporting either success or failure.
+- [Доступні Feed ендпоінти](https://prozorro-api-docs.readthedocs.io/en/latest/basic-actions/feed.html): Feed - це механізм синхронізації даних, який надає доступ до переліку основних сутностей системи Prozorro (тендери, конт…
+- [Використання](https://prozorro-api-docs.readthedocs.io/en/latest/basic-actions/opt_fields.html): Параметр `opt_fields` дозволяє додати додаткові поля до відповіді API. Це дозволяє отримувати тільки необхідні дані, зме…
+- [Options](https://prozorro-api-docs.readthedocs.io/en/latest/basic-actions/options.html): In addition to providing fields and their values in a request, you may also specify options to control how your request …
+- [Performance recommendations](https://prozorro-api-docs.readthedocs.io/en/latest/basic-actions/performance.html): “Aggressive” IP addresses can be restricted in the speed with which servers are processing CDB requests. In this case CD…
+- [contracting/contract/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/contracting/contract/tutorial.html): Exploring basic rules
+- [contracting/econtract/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/contracting/econtract/tutorial.html): Загальна картина
+- [Конфігурація процедур](https://prozorro-api-docs.readthedocs.io/en/latest/developers/projects/cdb/configs.html): “Процедура” або тип закупівлі це логічно і законодавчо виокремлена сутність, яка реалізує процес закупівлі відповідно чі…
+- [Константи](https://prozorro-api-docs.readthedocs.io/en/latest/developers/projects/cdb/constants.html): Використання констант є майже завжди обов’язковим при введенні нової функціональності в АПІ ЦБД.
+- [Документація](https://prozorro-api-docs.readthedocs.io/en/latest/developers/projects/cdb/documentation.html): docker compose build
+- [Словники і стандарти](https://prozorro-api-docs.readthedocs.io/en/latest/developers/projects/cdb/standards.html): Деякі поля апі мають валідацію на відповідність словнику. Словники зберігаються в [окремому репозиторії](https://github.…
+- [Context](https://prozorro-api-docs.readthedocs.io/en/latest/developers/projects/cdb/structure/context.html): Дані які зберігаются в межах одного запиту, реалізований на threading.local() або аналогах.
+- [Middlewares](https://prozorro-api-docs.readthedocs.io/en/latest/developers/projects/cdb/structure/middleware.html): Код який виконуєтся для кожного запиту до сервіса на початку і наприкінці обробки запита, тобто до view і після.
+- [Models](https://prozorro-api-docs.readthedocs.io/en/latest/developers/projects/cdb/structure/models.html): Код який валідує структуру та формат переданих даних.
+- [Serializers](https://prozorro-api-docs.readthedocs.io/en/latest/developers/projects/cdb/structure/serializers.html): Класси або функції, які приймають структуру з БД і повертають форматований/фільтрований об’єкт-відповідь, який безпосере…
+- [State](https://prozorro-api-docs.readthedocs.io/en/latest/developers/projects/cdb/structure/state.html): Класи що визначають бізнес логіку проведеня тендерів/планів/контрактів etc, фактично реалізуючи BPMN та sequence діаграм…
+- [Views](https://prozorro-api-docs.readthedocs.io/en/latest/developers/projects/cdb/structure/views.html): Клас з методами або функції, що викликає WSGI application для обробки http запита клієнта.
+- [Етап 1: Складний актив](https://prozorro-api-docs.readthedocs.io/en/latest/features/arma.html): *   Створити новий тип закупівлі (`procurementMethodType`) на основі aboveThresholdEU.
+- [Awarding approaches (DRAFT)](https://prozorro-api-docs.readthedocs.io/en/latest/features/awarding.html): cfaua has common complaintPeriod for all the awards. Here is how it works.
+- [Опис задачі](https://prozorro-api-docs.readthedocs.io/en/latest/features/awarding_prolongation.html): Коли в процедурі сформувався award, треба зафіксувати що він створений і є 5 робочих днів на його оцінку та прийняття (s…
+- [Створення закупівлі](https://prozorro-api-docs.readthedocs.io/en/latest/features/collective_quantity_tender.html): So called “Біржові торги”.
+- [Framework](https://prozorro-api-docs.readthedocs.io/en/latest/features/config_has_legal_regulation.html): Параметр, що визначає наявність або відсутність законодавчого регулювання при проведенні закупівлі
+- [Передумови](https://prozorro-api-docs.readthedocs.io/en/latest/features/contract_change.html): Зміни в умови контрактів можуть бути внесені підписантами через подання і підписання додаткових угод. В системі використ…
+- [Інтеграція контрактингу з системами електронного документообігу](https://prozorro-api-docs.readthedocs.io/en/latest/features/contracting_electronic_documents.html): Системи електронного документообігу вже широко використовутся для підписання контрактів. Мають великий досвід, служби пі…
+- [Структура об’єкта поставки](https://prozorro-api-docs.readthedocs.io/en/latest/features/lot_deliveries.html): В цій секції описана логіка додавання умов поставки під майбутній контракт.
+- [Історичність внесення змін терміну дії відборів](https://prozorro-api-docs.readthedocs.io/en/latest/features/modify_framework_period.html): Під час активації відборів система перевіряє максимально та мінімально допустимий термін тривалості відборів.
+- [Створення закупівлі](https://prozorro-api-docs.readthedocs.io/en/latest/features/pq_transfer_logic_from_bot.html): This section describes the logic of refusal of the priceQuotationBot and transferring validations from the bot to the CB…
+- [Рендерінг за допомогою JS сервіса/бібліотеки](https://prozorro-api-docs.readthedocs.io/en/latest/features/rendering_documents.html): Документ це pdf файл відповідного формату. Частина тексту і форматування є відносно сталими
+- [План розробки та технічні вимоги до реалізації:](https://prozorro-api-docs.readthedocs.io/en/latest/features/request_for_proposal.html): Для розуміння структури компонентів коду системи з яких складається система і вимог до їх реалізації ознайомтесь з цим р…
+- [Framework](https://prozorro-api-docs.readthedocs.io/en/latest/frameworks/basic-actions/questions.html): Let’s take a look at activated framework:
+- [Examples](https://prozorro-api-docs.readthedocs.io/en/latest/frameworks/config/clarification_until_duration.html): Field clarificationUntilDuration is the integer field that sets the number of days for the customer to respond to the in…
+- [hasItems is false](https://prozorro-api-docs.readthedocs.io/en/latest/frameworks/config/has_items.html): Field hasItems is the boolean field that defines if the framework should have items.
+- [qualificationComplaintDuration](https://prozorro-api-docs.readthedocs.io/en/latest/frameworks/config/qualification_complain_duration.html): Field qualificationComplaintDuration is the integer field that sets the number of days for the customer to provide expla…
+- [Create Framework with restricted access](https://prozorro-api-docs.readthedocs.io/en/latest/frameworks/config/restricted_derivatives.html): First create framework with restricted access by Broker. To do this, we need to set `restricted_derivatives` field to `t…
+- [frameworks/dps/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/frameworks/dps/tutorial.html): Framework creation
+- [frameworks/electroniccatalogue/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/frameworks/electroniccatalogue/tutorial.html): Framework creation
+- [frameworks/ifi/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/frameworks/ifi/tutorial.html): Framework creation
+- [URL Parameters](https://prozorro-api-docs.readthedocs.io/en/latest/medicines-registry/standard/url-parameters.html): Valid URL parameters: /**inn**.json, /**atc**.json, /**inn2atc**.json, /**atc2inn**.json
+- [Authorization](https://prozorro-api-docs.readthedocs.io/en/latest/medicines-registry/tutorial/authorization.html): **Basic authorization:** username, password
+- [ATC (Anatomical-Therapeutic-Chemical classification)](https://prozorro-api-docs.readthedocs.io/en/latest/medicines-registry/tutorial/get-atc.html): [Anatomical-Therapeutic-Chemical classification](https://en.wikipedia.org/wiki/Anatomical_Therapeutic_Chemical_Classific…
+- [ATC and INN](https://prozorro-api-docs.readthedocs.io/en/latest/medicines-registry/tutorial/get-atc2inn.html): Matching between ATC and INN classifications
+- [INN (International Non-proprietary Name)](https://prozorro-api-docs.readthedocs.io/en/latest/medicines-registry/tutorial/get-inn.html): [International Non-Proprietary Name (INN)](https://en.wikipedia.org/wiki/International_nonproprietary_name) is the uniqu…
+- [INN and ATC](https://prozorro-api-docs.readthedocs.io/en/latest/medicines-registry/tutorial/get-inn2atc.html): Matching between INN and ATC classifications
+- [GET request with invalid URL parameter](https://prozorro-api-docs.readthedocs.io/en/latest/medicines-registry/tutorial/invalid-url-param.html): **URL param:** /mnn.json
+- [Conventions](https://prozorro-api-docs.readthedocs.io/en/latest/overview.html): The Open Procurement API is the only interface to Open Procurement database that is core unit of [Open Procurement](http…
+- [Creating plan procurement](https://prozorro-api-docs.readthedocs.io/en/latest/planning/centralized-procurements/index.html): Buyer creates a plan. He should specify himself in buyers list and point at one of the central procurement organizations…
+- [planning/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/planning/tutorial.html): Creating plan procurement
+- [Agreement ownership change](https://prozorro-api-docs.readthedocs.io/en/latest/relocation/agreements.html): Let’s view transfer example for agreement transfer.
+- [Contract ownership change](https://prozorro-api-docs.readthedocs.io/en/latest/relocation/contracts.html): Let’s view transfer example for contract transfer.
+- [Overview](https://prozorro-api-docs.readthedocs.io/en/latest/relocation/overview.html): All API POST and PUT requests expect a top-level object with a single element in it named data. Successful responses wil…
+- [Plan ownership change](https://prozorro-api-docs.readthedocs.io/en/latest/relocation/plans.html): Let’s view transfer example for plan.
+- [Tender ownership change](https://prozorro-api-docs.readthedocs.io/en/latest/relocation/tenders.html): Let’s view transfer example for tender.
+- [Agreement in [Electronic Catalogue framework](https://prozorro-api-docs.readthedocs.io/en/latest/frameworks/electroniccatalogue/index.html#frameworks-electroniccatalogue)](https://prozorro-api-docs.readthedocs.io/en/latest/standard/agreement.html): uid, required, auto-generated
+- [Schema](https://prozorro-api-docs.readthedocs.io/en/latest/standard/award.html): string, auto-generated, read-only
+- [Schema](https://prozorro-api-docs.readthedocs.io/en/latest/standard/bid.html): tenderers:
+- [Cancellation](https://prozorro-api-docs.readthedocs.io/en/latest/standard/cancellation.html): uid, auto-generated
+- [ChangeTaxRate in [Close Framework Agreement procedure - closeFrameworkAgreement](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/cfaua/index.html#cfaua)](https://prozorro-api-docs.readthedocs.io/en/latest/standard/change.html): uid, auto-generated
+- [Claim](https://prozorro-api-docs.readthedocs.io/en/latest/standard/claim.html): uid, auto-generated
+- [ComplaintAppeal](https://prozorro-api-docs.readthedocs.io/en/latest/standard/complaint-appeal.html): uid, auto-generated
+- [ComplaintObjectionArgumentEvidence](https://prozorro-api-docs.readthedocs.io/en/latest/standard/complaint-objection-argument-evidence.html): uid, auto-generated
+- [ComplaintObjectionArgument](https://prozorro-api-docs.readthedocs.io/en/latest/standard/complaint-objection-argument.html): uid, auto-generated
+- [ComplaintObjectionClassification](https://prozorro-api-docs.readthedocs.io/en/latest/standard/complaint-objection-classification.html): string, required
+- [ComplaintObjectionRequestedRemedy](https://prozorro-api-docs.readthedocs.io/en/latest/standard/complaint-objection-requested-remedy.html): uid, auto-generated
+- [ComplaintObjection](https://prozorro-api-docs.readthedocs.io/en/latest/standard/complaint-objection.html): uid, auto-generated
+- [Complaint](https://prozorro-api-docs.readthedocs.io/en/latest/standard/complaint.html): uid, auto-generated
+- [ComplaintPost](https://prozorro-api-docs.readthedocs.io/en/latest/standard/complaintpost.html): string, required
+- [ConfidentialDocument](https://prozorro-api-docs.readthedocs.io/en/latest/standard/confidentialdocument.html): string, auto-generated
+- [Schema](https://prozorro-api-docs.readthedocs.io/en/latest/standard/contract.html): uid, auto-generated
+- [Criterion](https://prozorro-api-docs.readthedocs.io/en/latest/standard/criterion.html): uid, auto-generated
+- [Document](https://prozorro-api-docs.readthedocs.io/en/latest/standard/document.html): string, auto-generated
+- [EContract](https://prozorro-api-docs.readthedocs.io/en/latest/standard/econtract.html): uid, auto-generated
+- [EContractCancellation](https://prozorro-api-docs.readthedocs.io/en/latest/standard/econtractcancellation.html): uid, auto-generated
+- [EContractChange](https://prozorro-api-docs.readthedocs.io/en/latest/standard/econtractchange.html): uid, auto-generated
+- [EligibleEvidence](https://prozorro-api-docs.readthedocs.io/en/latest/standard/eligibleevidence.html): uid, auto-generated
+- [Evidence](https://prozorro-api-docs.readthedocs.io/en/latest/standard/evidence.html): uid, auto-generated
+- [Feature](https://prozorro-api-docs.readthedocs.io/en/latest/standard/feature.html): string, auto-generated
+- [Firm](https://prozorro-api-docs.readthedocs.io/en/latest/standard/firm.html): string, firm name, required
+- [Framework](https://prozorro-api-docs.readthedocs.io/en/latest/standard/framework.html): string, multilingual
+- [FrameworkChange](https://prozorro-api-docs.readthedocs.io/en/latest/standard/framework_change.html): uid, auto-generated
+- [Qualification](https://prozorro-api-docs.readthedocs.io/en/latest/standard/framework_qualification.html): frameworkID:
+- [Schema](https://prozorro-api-docs.readthedocs.io/en/latest/standard/item.html): string, auto-generated
+- [ItemAttribute](https://prozorro-api-docs.readthedocs.io/en/latest/standard/item_attribute.html): string, required
+- [Lot](https://prozorro-api-docs.readthedocs.io/en/latest/standard/lot.html): string, auto-generated
+- [Metric](https://prozorro-api-docs.readthedocs.io/en/latest/standard/metric.html): uid, auto-generated
+- [Milestone](https://prozorro-api-docs.readthedocs.io/en/latest/standard/milestone.html): uid, auto-generated
+- [MilestoneReference](https://prozorro-api-docs.readthedocs.io/en/latest/standard/milestoneReference.html): Reference on existed [Milestone](https://prozorro-api-docs.readthedocs.io/en/latest/standard/milestone.html#milestone).
+- [Observation](https://prozorro-api-docs.readthedocs.io/en/latest/standard/observation.html): uid, auto-generated
+- [Schema](https://prozorro-api-docs.readthedocs.io/en/latest/standard/organization.html): string, multilingual
+- [planID](https://prozorro-api-docs.readthedocs.io/en/latest/standard/plan.html): startDate should always precede endDate.
+- [PlanCancellation](https://prozorro-api-docs.readthedocs.io/en/latest/standard/plancancellation.html): uid, auto-generated
+- [PlanMilestone](https://prozorro-api-docs.readthedocs.io/en/latest/standard/planmilestone.html): uid, auto-generated
+- [PlanOrganization](https://prozorro-api-docs.readthedocs.io/en/latest/standard/planorganization.html): string, multilingual
+- [PlanRelation](https://prozorro-api-docs.readthedocs.io/en/latest/standard/planrelation.html): string, auto-generated, read-only
+- [ProcuringEntity](https://prozorro-api-docs.readthedocs.io/en/latest/standard/procuringentity.html): string, multilingual
+- [Qualification](https://prozorro-api-docs.readthedocs.io/en/latest/standard/qualification.html): string, auto-generated
+- [QualificationMilestone](https://prozorro-api-docs.readthedocs.io/en/latest/standard/qualificationmilestone.html): uid, auto-generated
+- [Question](https://prozorro-api-docs.readthedocs.io/en/latest/standard/question.html): uid, auto-generated
+- [Requirement](https://prozorro-api-docs.readthedocs.io/en/latest/standard/requirement.html): uid, auto-generated
+- [RequirementGroup](https://prozorro-api-docs.readthedocs.io/en/latest/standard/requirementgroup.html): uid, auto-generated
+- [RequirementResponse](https://prozorro-api-docs.readthedocs.io/en/latest/standard/requirementresponse.html): uid, auto-generated
+- [SignerInfo](https://prozorro-api-docs.readthedocs.io/en/latest/standard/signer_info.html): string, required
+- [Submission](https://prozorro-api-docs.readthedocs.io/en/latest/standard/submission.html): tenderers:
+- [Schema](https://prozorro-api-docs.readthedocs.io/en/latest/standard/tender.html): string, multilingual
+- [Transaction](https://prozorro-api-docs.readthedocs.io/en/latest/standard/transaction.html): string, required
+- [Transfer](https://prozorro-api-docs.readthedocs.io/en/latest/standard/transfer.html): uid, auto-generated
+- [Unit](https://prozorro-api-docs.readthedocs.io/en/latest/standard/unit.html): Unit identifier.
+- [UnitPrice in cfaua](https://prozorro-api-docs.readthedocs.io/en/latest/standard/unitPrice.html): relatedItem:
+- [Schema](https://prozorro-api-docs.readthedocs.io/en/latest/standard/util.html): startDate:
+- [tendering/arma/tutorial-complexAsset.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/arma/tutorial-complexAsset.html): Конфігурація
+- [tendering/basic-actions/24hours.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/24hours.html): During the qualification process (or pre-qualification if the procedure has one) procuring entity can decide to allow a …
+- [Mechanism of the 2-phase commit](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/2pc.html): The 2-phase commit provides a mechanism for CDB to publish only the tenders that clients are able to control and duplica…
+- [Requirement response basic operation](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/award-requirement-response.html): Any action on the requirement response in the award can be performed only by the tender owner.
+- [Bid Items](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/bid-items.html): Items in bid are available in all types of procedures
+- [Requirement response basic operation](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/bid-requirement-response.html): Bid requirement response - an object that shows that the user meets the tender owner requirements, and can participate i…
+- [Registration of Bid proposal](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/bidding.html): POST /tenders/64e93250be76435397e8c992ed4214d1/bids/ HTTP/1.1
+- [Tender Qualification Claim/Complaint Retrieval](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/claim-qualification.html): You can list all Tender Qualification Claims/Complaints:
+- [Tender Award Claim/Complaint Retrieval](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/claims-award.html): You can list all Tender Award Claims/Complaints:
+- [Tender Conditions Claim/Complaint Retrieval](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/claims-tender.html): You can list all Tender Conditions Claims/Complaints:
+- [tendering/basic-actions/complaint-payments.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/complaint-payments.html): Let’s create a complaint:
+- [tendering/basic-actions/complaints-award-2020-04-19.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/complaints-award-2020-04-19.html): Claim/Complaint Retrieval
+- [tendering/basic-actions/complaints-award.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/complaints-award.html): Claim/Complaint Retrieval
+- [Tender Cancellation Complaint Retrieval](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/complaints-cancellation.html): You can list all Tender Cancellation Complaints:’
+- [Tender Qualification Claim/Complaint Retrieval](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/complaints-qualification-2020-04-19.html): You can list all Tender Qualification Claims/Complaints:
+- [tendering/basic-actions/complaints-qualification.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/complaints-qualification.html): Claim/Complaint Retrieval
+- [tendering/basic-actions/complaints-tender-2020-04-19.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/complaints-tender-2020-04-19.html): Claim/Complaint Retrieval
+- [Tender Conditions Claim/Complaint Retrieval](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/complaints-tender.html): You can list all Tender Conditions Claims/Complaints:
+- [Claims](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/complaints.html): ![Image 1: digraph G {
+- [Confidentiality for bids](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/confidential-documents.html): Confidential documents are supported for bids in the above threshold procedures.
+- [tendering/basic-actions/contract-owner.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/contract-owner.html): For further contracting using new flow ([Tutorial](https://prozorro-api-docs.readthedocs.io/en/latest/contracting/econtr…
+- [Uploading contractProforma](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/contract-template-name.html): For further contracting it is possible provide contract template. There are two ways to do this:
+- [tendering/basic-actions/criteria.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/criteria.html): Criteria Basic Operation
+- [Documents Deletion](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/documents-deletion.html): There is a possibility to delete documents in draft objects such as plan, tender, bid.
+- [Announcing Multilot tender](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/lots.html): When having tender with separate items that can be supplied by different providers it is possible to split the tender in…
+- [Announcing MEAT](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/meat.html): Besides simple price-only tenders it is possible to announce the tender where other factors are valuable. Such tenders d…
+- [tendering/basic-actions/milestones.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/milestones.html): Payment information can be specified via tender milestones list of [Milestone](https://prozorro-api-docs.readthedocs.io/…
+- [Registration of the Tender](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/procuring.html): Tender registration consists of primary record creation and documentation uploading.
+- [tendering/basic-actions/prolongation_awards.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/prolongation_awards.html): For all procedures, except [Reporting, negotiation procedures - reporting, negotiation, negotiation.quick](https://prozo…
+- [Requirement response basic operation](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/qualification-requirement-response.html): Any action on the requirement response in the award can be performed only by the tender owner.
+- [tendering/basic-actions/qualification.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/qualification.html): Qualification Operations
+- [Asking Questions](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/questions.html): Anybody (who provides their identity) can ask questions:
+- [Additional sign data](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/sign-data.html): In the context of creating e-protocols, there was a need to impose a signature not only an object (an award or bid), but…
+- [Technical Features](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/technical-features.html): Technical features available in these procedures:
+- [Getting list of all tenders](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/tenders.html): GET /tenders HTTP/1.1
+- [Documents Uploading](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/basic-actions/upload.html): All of the document uploading API endpoints follow the same set of rules.
+- [Creating tender with inspector](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/belowthreshold/inspector.html): To create tender with inspector you should set field inspector on creation (or you can in set it later by patching tende…
+- [Tutorial](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/belowthreshold/tutorial.html): The set of possible configuration values:
+- [tendering/cfaselectionua/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/cfaselectionua/tutorial.html): Configuration
+- [Submitting Questions](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/cfaua/questions.html): Anybody (who provides their identity) can ask questions:
+- [Tender:](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/cfaua/requests.html): Get tenders collection
+- [tendering/cfaua/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/cfaua/tutorial.html): Configuration
+- [Multiple Lots Tutorial](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/competitivedialogue/multiple_lots_tutorial.html): Let’s create tender:
+- [tendering/competitivedialogue/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/competitivedialogue/tutorial.html): Configuration
+- [tendering/competitivedialogue/tutorial_stage2EU.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/competitivedialogue/tutorial_stage2EU.html): Configuration
+- [tendering/competitivedialogue/tutorial_stage2UA.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/competitivedialogue/tutorial_stage2UA.html): Configuration
+- [tendering/competitiveordering/tutorial-long.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/competitiveordering/tutorial-long.html): Tutorial (long)
+- [tendering/competitiveordering/tutorial-short.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/competitiveordering/tutorial-short.html): Tutorial (short)
+- [Configuration](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/competitiveordering/tutorial.html): The set of possible configuration values:
+- [awardComplainDuration is true](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/award_complain_duration.html): Field awardComplainDuration is a integer field that indicates the duration of contesting the results of determining the …
+- [hasAwardComplaints](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/award_complaints.html): Field hasAwardComplaints is a boolean field that indicates the presence or absence in the procurement of a complaint abo…
+- [cancellationComplainDuration is true](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/cancellation_complain_duration.html): Field cancellationComplainDuration is a integer field that indicates the duration of contesting the results of determini…
+- [hasCancellationComplaints](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/cancellation_complaints.html): Field hasCancellationComplaints is a boolean field that indicates the presence or absence of a complaint about the cance…
+- [Examples](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/clarification_until_duration.html): Field clarificationUntilDuration is an integer field that sets the number of days for the customer to respond to the req…
+- [tendering/config/has_auction.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/has_auction.html): hasAuction
+- [tendering/config/has_awarding_order.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/has_awarding_order.html): hasAwardingOrder
+- [hasPreSelectionAgreement is true](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/has_pre_selection_agreement.html): Field hasPreSelectionAgreement is a boolean field that indicates whether the tender has pre-selection procedure and has …
+- [hasPrequalification is true](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/has_prequalification.html): Field hasPrequalification is a boolean field that indicates whether the tender has an pre qualification stage or not.
+- [hasQualificationComplaints is true](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/has_qualification_complaints.html): Field hasQualificationComplaints is a boolean field that determines the presence or absence of an appeal in the procurem…
+- [hasValueEstimation is true](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/has_value_estimation.html): Field hasValueEstimation is a boolean field that determines the presence or absence of the expected cost in the procurem…
+- [hasValueRestriction is true](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/has_value_restriction.html): Field hasValueRestriction is a boolean field that indicates whether the bid value can exceed tender/lot initial value of…
+- [tendering/config/min_bids_number.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/min_bids_number.html): minBidsNumber
+- [Examples](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/qualification_complain_duration.html): Field qualificationComplainDuration is an integer field that determines the duration of appealing the qualification resu…
+- [Examples](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/qualification_duration.html): Field qualificationDuration is an integer field that determines the duration of the participants’ qualification period i…
+- [tendering/config/restricted.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/restricted.html): restricted
+- [Configuration peculiarities](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/tender_complain_regulation.html): Field tenderComplainRegulation is a integer field that determines the final date of the period for contesting the terms …
+- [hasTenderComplaints](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/tender_complaints.html): Field hasTenderComplaints is a boolean field that indicates the presence or absence of a complaint about the terms of th…
+- [tendering/config/value_currency_equality.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/config/value_currency_equality.html): valueCurrencyEquality
+- [tendering/defense/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/defense/tutorial.html): Configuration
+- [tendering/esco/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/esco/tutorial.html): Configuration
+- [Creating tender](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/limited/multiple_lots_tutorial.html): Let’s create tender:
+- [tendering/limited/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/limited/tutorial.html): Configuration
+- [tendering/open/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/open/tutorial.html): Configuration
+- [tendering/openeu/multiple_lots_tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/openeu/multiple_lots_tutorial.html): Multiple Lots Tutorial
+- [tendering/openeu/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/openeu/tutorial.html): Configuration
+- [Main responsibilities](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/openua/overview.html): The Open Procurement Open UA procedure is plugin to Open Procurement API software. It requires 0.12 version of [openproc…
+- [tendering/openua/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/openua/tutorial.html): Configuration
+- [Tutorial](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/pricequotation/tutorial.html): The set of possible configuration values:
+- [Creating tender with inspector](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/requestforproposal/inspector.html): To create tender with inspector you should set field inspector on creation (or you can in set it later by patching tende…
+- [tendering/requestforproposal/multicurrency.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/requestforproposal/multicurrency.html): Multi currency
+- [tendering/requestforproposal/tutorial.md](https://prozorro-api-docs.readthedocs.io/en/latest/tendering/requestforproposal/tutorial.html): Configuration
+- [Violation report in draft status](https://prozorro-api-docs.readthedocs.io/en/latest/violation-reports/errors.html): It is forbidden to post already published violation reports
+- [Post a violation report](https://prozorro-api-docs.readthedocs.io/en/latest/violation-reports/tutorial.html): You create it from a contract. All the documents are posted along with the data

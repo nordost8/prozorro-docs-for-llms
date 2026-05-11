@@ -2,7 +2,5 @@
 docs/
 docs_clean/
 step3_done.txt
-llms.txt
-llms-full.txt
 __pycache__/
 *.pyc
